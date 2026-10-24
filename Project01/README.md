@@ -43,7 +43,7 @@ python CVproject/main.py
 | `kalman.predict()` → `kalman.correct()`  | 매 프레임 예측 후 측정값으로 보정                               |
 ---
 
-## 2. 직접 구현한 부분 (내 아이디어)
+## 2. 직접 구현한 부분
 
 ### 2-1. 손가락 상태를 "개수" 대신 "리스트"로: `finger_states()`
 
