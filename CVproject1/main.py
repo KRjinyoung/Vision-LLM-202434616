@@ -32,7 +32,7 @@ COLOR_HOLD = 5      # COLOR 손모양을 몇 프레임 유지해야 색이 바�
 CLEAR_HOLD = 15     # 주먹을 몇 프레임 유지해야 지워지는지 (실수로 지우는 것 방지)
 
 
-# ---------------- 노트북 M: 손가락 각도 계산 ----------------
+# ---------------- 손가락 각도 계산 ----------------
 # 중간 점 기준으로 각도 계산하는 함수 (mp02.py 그대로)
 def calculate_angle(p1, p2, p3):
     vector1 = np.array([p1.x - p2.x, p1.y - p2.y, p1.z - p2.z])
@@ -62,7 +62,7 @@ finger_angle_points = (
 )
 
 
-# 노트북 M의 규칙 기반 손가락 판정: 개수 대신 "어떤 손가락이 펴졌는지"를 리스트로 반환
+# 규칙 기반 손가락 판정: 개수 대신 "어떤 손가락이 펴졌는지"를 리스트로 반환
 # 예: 검지만 폈으면 [False, True, False, False, False]
 def finger_states(hand):
     return [calculate_angle(hand[i1], hand[i2], hand[i3]) >= angle_threshold
@@ -92,7 +92,7 @@ def overlay(frame, canvas):
     return result
 
 
-# ---------------- 노트북 J: USB 카메라 GStreamer 파이프라인 ----------------
+# ---------------- USB 카메라 GStreamer 파이프라인 ----------------
 pipeline = (
     "v4l2src device=/dev/video0 ! "
     "video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! "
@@ -103,7 +103,7 @@ pipeline = (
 )
 
 
-# ---------------- 노트북 L: OpenCV Kalman Filter ----------------
+# ---------------- OpenCV Kalman Filter ----------------
 # 손가락 끝의 떨림을 줄이기 위해 사용
 # 상태 벡터: [x, y, vx, vy] / 측정 벡터: [x, y]
 kalman = cv2.KalmanFilter(4, 2)
