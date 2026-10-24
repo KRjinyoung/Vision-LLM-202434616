@@ -32,15 +32,15 @@ python CVproject/main.py
 
 아래 코드는 수업 노트북 코드를 거의 그대로 사용했습니다.
 
-| 코드 | 역할 |
-|---|---|---|
-| `pipeline` (GStreamer 문자열) | USB 카메라를 640x480 / 30fps로 읽고, 버퍼를 1장만 유지해 지연을 줄임 |
-| `calculate_angle()` | 랜드마크 세 점으로 가운데 관절의 각도를 계산 |
-| `angle_threshold`, `finger_angle_points` | 관절 각도가 160° 이상이면 "펴진 손가락"으로 판정 |
-| `HandLandmarker` 생성 | MediaPipe 손 검출기 (손 1개만 검출하도록 `num_hands=1`) |
-| `cv2.KalmanFilter(4, 2)` 설정 | 상태 `[x, y, vx, vy]`, 측정 `[x, y]`의 등속 모델로 좌표 떨림 보정 |
-| `kalman.predict()` → `kalman.correct()` | 매 프레임 예측 후 측정값으로 보정 |
 
+| 코드                                       | 역할                                                |
+| ---------------------------------------- | ------------------------------------------------- |
+| `pipeline` (GStreamer 문자열)               | USB 카메라를 640×480 / 30fps로 읽고, 버퍼를 1장만 유지해 지연을 줄임  |
+| `calculate_angle()`                      | 랜드마크 세 점으로 가운데 관절의 각도를 계산                         |
+| `angle_threshold`, `finger_angle_points` | 관절 각도가 160° 이상이면 "펴진 손가락"으로 판정                    |
+| `HandLandmarker` 생성                      | MediaPipe 손 검출기 (손 1개만 검출하도록 `num_hands=1`)       |
+| `cv2.KalmanFilter(4, 2)` 설정              | 상태 `[x, y, vx, vy]`, 측정 `[x, y]`의 등속 모델로 좌표 떨림 보정 |
+| `kalman.predict()` → `kalman.correct()`  | 매 프레임 예측 후 측정값으로 보정                               |
 ---
 
 ## 2. 직접 구현한 부분 (내 아이디어)
