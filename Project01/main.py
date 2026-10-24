@@ -120,7 +120,7 @@ kalman.measurementNoiseCov = np.eye(2, dtype=np.float32) * 1.0  # 클수록 더 
 kalman.errorCovPost = np.eye(4, dtype=np.float32)
 
 
-# ---------------- MediaPipe 모델 준비 (노트북 M) ----------------
+# ---------------- MediaPipe 모델 준비 ----------------
 base_option = python.BaseOptions(model_asset_path=MODEL_PATH)
 options = vision.HandLandmarkerOptions(base_options=base_option, num_hands=1)
 hand_detector = vision.HandLandmarker.create_from_options(options)
