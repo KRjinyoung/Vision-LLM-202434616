@@ -2,7 +2,7 @@
 
 colab 환경에서 실험하였습니다
 GPU = tesla T4
-실행에 오류가있으면 ipynb참고 부탁드립니다
+라이브러리가 꼬여 실행에 오류가있으면 ipynb참고 부탁드립니다
 
 ## 1. 잔상효과 — `motion_trail_np` / `motion_trail_cp`
 
