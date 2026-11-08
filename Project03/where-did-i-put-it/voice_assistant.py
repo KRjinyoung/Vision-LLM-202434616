@@ -9,6 +9,7 @@ vision_tracker.py가 저장한 item_memory.json과 last_frame_<class_id>.jpg를 
 import base64
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -220,8 +221,8 @@ def main():
 
         print(f"[질문] {question}")
 
-        # 무음이면 Whisper가 [BLANK_AUDIO] 같은 토큰만 돌려줌
-        if not question or "BLANK_AUDIO" in question:
+        # 무음·잡음이면 Whisper가 [BLANK_AUDIO], [끝] 같은 괄호 토큰만 돌려줌 → 괄호를 빼고 남는 말이 없으면 다시 묻기
+        if not re.sub(r"\[.*?\]|\(.*?\)", "", question).strip():
             text_to_speech("잘 못 들었어요. 다시 말씀해 주세요.")
             continue
 
