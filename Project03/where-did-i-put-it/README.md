@@ -72,8 +72,6 @@ cp -a $S/.venv $S/.piper_venv .
 참고
 - 마이크는 `voice_assistant.py`의 `MIC_DEVICE`에 이름으로 지정 (`arecord -l`로 확인)
 - Gemma + mmproj가 약 4.2GB라 VS Code 등 다른 무거운 프로그램은 끄고 실행
-- Windows에서 SSH로 접속해 한글을 입력하려면 먼저 `chcp 65001`
-
 ## 한계
 
 - COCO 클래스만 탐지 (지갑·열쇠·이어폰 없음)

@@ -11,7 +11,6 @@ import json
 import os
 import re
 import subprocess
-import sys
 import time
 
 from llama_cpp import Llama
@@ -162,9 +161,6 @@ def ask_gemma(llm, system_prompt, user_content, max_tokens):
 def answer_question(llm, question):
     items = load_items()
 
-    if not items:
-        return "아직 기억한 물건이 없어요."
-
     # 1. 기억한 물건 중 찾는 물건 고르기 (핸드폰/폰 같은 다른 표현도 Gemma가 '휴대폰'으로 맞춰줌)
     target = ask_gemma(llm, FIND_PROMPT, f"목록: {', '.join(items)}\n질문: {question}", 10).strip(" .")
     print(f"[찾는 물건] {target}")
@@ -189,9 +185,6 @@ def answer_question(llm, question):
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # Windows SSH 터미널은 한글을 UTF-8이 아닌 인코딩으로 보낼 수 있어서, 깨진 글자 때문에 죽지 않게
-    sys.stdin.reconfigure(errors="replace")
 
     llm = Llama(
         model_path=GEMMA_MODEL_PATH,
